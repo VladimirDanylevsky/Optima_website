@@ -3,6 +3,8 @@ Thumbs.db
 ehthumbs.db
 #DB
 **/optima/db.sqlite3
+*.pyo
+*.pyc
 # Folder config file
 Desktop.ini
 .idea\\
