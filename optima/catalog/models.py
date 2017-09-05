@@ -12,6 +12,8 @@ from wagtail.wagtailsearch import index
 
 from more_itertools import grouper
 
+""" Catalog page for listing of all products/sub-dir of manufacturer"""
+
 
 class CatalogIndexPage(Page):
     sphere = models.CharField(blank=False, max_length=90, default='Medicine')
@@ -29,6 +31,13 @@ class CatalogIndexPage(Page):
         else:
             return None
 
+    def get_slider_image(self):
+        slider_image = self.slider_images.first()
+        if slider_image:
+            return slider_image
+        else:
+            return None
+
     def simple_pagination(self, elements=3):
         products = self.get_children()
         if len(products) == 0:
@@ -40,13 +49,15 @@ class CatalogIndexPage(Page):
     search_fields = Page.search_fields + [
         index.SearchField('description'),
         index.SearchField('short_title'),
+        index.SearchField('sphere'),
     ]
 
     content_panels = Page.content_panels + [
         FieldPanel('sphere', classname="full"),
         FieldPanel('short_title', classname="full"),
         FieldPanel('description', classname="full"),
-        InlinePanel('gallery_images', label="Галерея зображень")
+        InlinePanel('gallery_images', label="Галерея зображень"),
+        InlinePanel('slider_images', label="Слайдер на головній")
     ]
 
 
@@ -59,6 +70,24 @@ class CatalogIndexPageGalleryImage(Orderable):
     panels = [
         ImageChooserPanel('image'),
     ]
+
+
+class CatalogIndexSliderGalleryImage(Orderable):
+    page = ParentalKey(CatalogIndexPage, related_name='slider_images')
+    image = models.ForeignKey(
+        'wagtailimages.Image', on_delete=models.CASCADE, related_name='+'
+    )
+    caption = models.CharField(blank=False, max_length=90, default="Insert info, first row")
+    small_caption = models.CharField(blank=False, max_length=90, default="More info, second row")
+
+    panels = [
+        ImageChooserPanel('image'),
+        FieldPanel('caption', classname="full"),
+        FieldPanel('small_caption', classname="full"),
+    ]
+
+
+""" Catalog page for listing of manufacturers, create only one, reuse all future info """
 
 
 class CatalogMainPage(Page):

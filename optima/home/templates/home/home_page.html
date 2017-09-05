@@ -99,45 +99,27 @@
                 <li data-target="#Maincarousel" data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner" role="listbox">
+			{% for page_child in page.get_children.first.get_children %}
+				{% if forloop.first %}
                 <div class="carousel-item active">
-                    <a href="/catalog/catalog-covidien"><img class="d-block w-100" src="{% static 'home/img/carousel1.jpg' %}" alt=""></a>
+				{% else %}
+				<div class="carousel-item">
+				{% endif %}
+					{% image page_child.specific.get_slider_image.image original as tmp_picture %} 
+                    <a href="{{ page_child.specific.url }}"><img class="d-block w-100" src="{{ tmp_picture.url }}" alt=""></a>
                     <div class="carousel-caption d-none d-md-block covidien-text">
                         <div class="row">
                             <div class="col-sm-1 col-md-3 col-lg-3"></div>
                             <div class="col-sm-11 col-md-9 col-lg-9">
-                                <p class="h1 wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">Covidien</p>
+                                <p class="h1 wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">{{ page_child.specific.get_slider_image.caption }}</p>
                                 <div class="dropdown-divider wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeIn;"></div>
-                                <p class="h3 wow fadeIn" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">Рішення для хірургічних втручань та витратні матеріали</p>
+                                <p class="h3 wow fadeIn" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">{{ page_child.specific.get_slider_image.small_caption }}</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item">
-                    <a href="/catalog/catalog-terumo"><img class="d-block w-100" src="{% static 'home/img/carousel2.jpg' %}" alt=""></a>
-                    <div class="carousel-caption d-none d-md-block covidien-text">
-                        <div class="row">
-                            <div class="col-sm-1 col-md-3 col-lg-3"></div>
-                            <div class="col-sm-11 col-md-9 col-lg-9">
-                                <p class="h1 wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">Terumo</p>
-                                <div class="dropdown-divider wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeIn;"></div>
-                                <p class="h3 wow fadeIn" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeIn;">Вся необхідна екосистема для збору та донації крові</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <a href="/catalog/catalog-smith-nephew"><img class="d-block w-100" src="{% static 'home/img/carousel3.jpg' %}" alt=""></a>
-                    <div class="carousel-caption d-none d-md-block covidien-text">
-                        <div class="row">
-                            <div class="col-sm-1 col-md-3 col-lg-3"></div>
-                            <div class="col-sm-11 col-md-9 col-lg-9">
-                                <p class="h1 wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">Smith & Nephew</p>
-                                <div class="dropdown-divider wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeIn;"></div>
-                                <p class="h3 wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">Інноваційні біполярні холодноплазмені апарати для коблації</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+			{% endfor %}
+                
             </div>
             <a class="carousel-control-prev" href="#Maincarousel" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
