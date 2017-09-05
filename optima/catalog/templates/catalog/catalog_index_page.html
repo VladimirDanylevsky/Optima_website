@@ -1,0 +1,78 @@
+{% extends "base_nav_footer.html" %}
+{% load static %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% block maincontainer %}
+<main>
+    <!-- First container -->
+        <div class="container">
+            <div class="space-between-md">
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                <div class="toc-wrapper pinned" style="top: 0px;">
+                    <div style="height: 15px;"></div>
+							<ul class="table-of-contents textarea">
+							{% for child_page in page.get_children %}
+                            <li><a href="#{{ child_page.specific.pk }}">{{child_page.specific.title}}</a></li>
+							{% endfor %}
+                        </ul>
+                </div>
+            </div>
+                <!-- Content -->
+                <div class="col-md-9">
+                    <!-- Products List -->
+                    <section class="section">
+                        <!-- Single Product -->
+						{% for child_page in page.get_children %}
+                        <div class="row">
+                            <!-- First column-->
+                            <div class="col-lg-5 mb-r">
+                                <!--Featured image-->
+                                <div id='{{ child_page.specific.pk }}' class="view overlay hm-white-slight z-depth-1 scrollspy">
+									{% image child_page.specific.main_image width-800 height-800 as category_image %}
+                                    <img src="{{ category_image.url }}" class="img-fluid">
+                                    <a href="{{ child_page.specific.url }}" data-toggle="modal" data-target="#quick-look-ex">
+                                        <div class="mask waves-light waves-effect waves-light">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- /.First column -->
+
+                            <!-- Second column -->
+                            <div class="col-lg-7 mb-r">
+
+                                <!-- Excerpt -->
+                                <h4><a href="{{ child_page.specific.url }}">{{ child_page.specific.title }} </a></h4>
+
+                                <!-- Product Description -->
+                                <p>{{ child_page.specific.description|richtext }}</p>
+
+                                <!-- Buttons -->
+                                <a href="{{ child_page.specific.url }}" class="btn btn-secondary waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Wishlist">Дізнатися більше про {{ child_page.specific.title }}</a>
+
+                                <!-- /.Buttons -->
+
+                            </div>
+                            <!-- /.Second column -->
+
+                        </div>
+						{% endfor %}
+
+                    </section>
+                    <!-- /.Products List -->
+
+                </div>
+                <!-- /.Content -->
+
+                <!-- Sidebar -->
+            </div>
+            <!-- /.Content -->
+        <div class="space-between"></div>
+        </div>
+        <!-- End of first container-->
+        <!-- Education streak-->
+
+
+    </main>
+{% endblock %}

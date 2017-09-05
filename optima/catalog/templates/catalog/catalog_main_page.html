@@ -1,0 +1,68 @@
+{% extends "base_nav_footer.html" %}
+{% load static %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% block maincontainer %}
+    <main>
+        <!-- First container -->
+        <div class="container">
+            <!--Section: about-->
+            <br id="catalog">
+            <section class="section">
+
+                <div class='space-between'></div>
+
+                <!-- First row -->
+                <div class="row">
+					{% for page_child in page.get_children %}
+                    <!-- First column -->
+                    <div class="col-lg-4 col-md-12 wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">
+
+                        <!-- Card -->
+                        <div class="card card-cascade narrower same-height hoverable">
+
+                            <!-- Card image -->
+                            <div class="view overlay hm-white-slight z-depth-1">
+								{% image page_child.specific.main_image fill-900x600-c20 format-jpeg as tmp_picture %} 
+                                <a href="{{ page_child.specific.url }}"><img src="{{ tmp_picture.url }}" class="img-fluid rounded-top" alt=""></a>
+                                <a>
+                                    <div class="waves-light waves-effect waves-light"></div>
+                                </a>
+                            </div>
+                            <!-- /.Card image -->
+
+                            <!-- Card content -->
+                            <div class="card-body text-center">
+
+                                <!-- Category & Title -->
+                                <a href="{{ page_child.specific.url }}" class="text-muted"><h5>{{ page_child.specific.sphere }}</h5></a>
+                                <h4 class="card-title"><strong><a href="{{ page_child.specific.url }}">{{ page_child.specific.short_title }}</a></strong></h4>
+
+                                <!-- Description -->
+                                <p class="card-text same-height-text">{{ page_child.specific.description|richtext }}
+                                </p>
+                                <a href="{{ page_child.specific.url }}"><button type="button" class="btn btn-outline-default waves-effect btn-lg">Перейти до каталогу {{ page_child.specific.short_title }}</button></a>
+
+                            </div>
+                            <!-- /.Card content -->
+
+                        </div>
+                        <!-- /.Card -->
+
+                    </div>
+					{% endfor %}
+                        <!-- /.Card -->
+
+                    </div>
+                    <!-- /.Third column -->
+
+                </div>
+                <!-- /.First row -->
+
+            </section>
+        </div>
+        <!-- End of first container-->
+        <!-- Education streak-->
+
+
+    </main>
+{% endblock %}

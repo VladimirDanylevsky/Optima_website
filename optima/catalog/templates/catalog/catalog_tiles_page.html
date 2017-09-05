@@ -1,0 +1,111 @@
+{% extends "base_nav_footer.html" %}
+{% load static %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% block maincontainer %}
+	<main>
+
+		<!-- First container -->
+		<div class="container">
+			<!--Section: about-->
+			<section class="section">
+
+				<div class='space-between'></div>
+
+				<ol class="breadcrumb d-inline-flex p-2 h6 wow fadeIn"	data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">
+					{% for ancestors in page.get_ancestors %}
+					{% if ancestors.specific.title != 'Root' %}
+					<li class="breadcrumb-item"><a href="{{ ancestors.specific.url }}">{{ ancestors.specific.title }}</a></li>
+					{% endif %}
+					{% endfor %}
+					<li class="breadcrumb-item"><a href="{{ page.url }}">{{ page.title }}</a></li>
+				</ol>
+				<div class="dropdown-divider optima-light-color wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;"></div>
+				<div class="container-fluid zero-left-shift">
+
+
+
+					<div class="tiles-mag zero-left-shift">
+
+						<!-- Magazine -->
+						<div class="row mb-2 zero-left-shift">
+							<!-- Main news -->
+							<div class="col-md-3  zero-left-shift wow fadeIn" data-wow-delay="0.55s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">
+								<div class="list-group">
+									
+									{% image page.main_image width-800 height-500 as preview_image %}
+									<a href="#" class="list-group-item no-padding"><img src="{{ preview_image.url }}" class="img-fluid" alt=""></a>
+									{% for prev_pages in page.get_prev_siblings %}
+											<a href="{{ prev_pages.specific.url }}" class="list-group-item">{{ prev_pages.specific.title }}</a>
+									{% endfor%}
+									<a href="{{ page.url }}" class="list-group-item active disabled">{{ page.title }}</a>
+									{% for next_pages in page.get_next_siblings %}
+											<a href="{{ next_pages.specific.url }}" class="list-group-item">{{ next_pages.specific.title }}</a>
+									{% endfor%}
+								</div>
+							</div>
+							<div class="col-md-9">
+
+								<!--Tiles blog-->
+								<div class="tiles-blog">
+									<!--First row-->
+									{% for pages in page.simple_pagination %}
+									<div class="row wow fadeIn"	 data-wow-delay="0.6s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">
+										<!--First column-->
+										{% for child_page in pages %}
+										{% if child_page != None %}
+										<div class="col-md-4 tiles-margins " data-wow-delay="0.4s">
+											<!--Single blog post-->
+											<div class="tiles-blog-post waves-effect waves-light z-depth-1">
+												<!--Blog post link-->
+												<a href="{{ child_page.specific.url }}">
+													<!--Image-->
+													<div class="tiles-image hm-zoom">
+														{% image child_page.specific.main_image fill-800x800-c20 format-jpeg as tmp_picture %} 
+														<img src="{{ tmp_picture.url }}" class="img-fluid" alt="">
+
+													</div>
+													<!--/Image-->
+												</a>
+												<!--Blog post link-->
+
+												<!--Blog post body-->
+												<div class="tiles-post-body">
+													<!--Excerpt-->
+
+
+													<h4 class="tiles-post-title h4-responsive"><a href={{ child_page.specific.url }} class="white-text">{{ child_page.specific.title }}</a></h4>
+
+
+
+													<!--/Excerpt-->
+												</div>
+												<!--/Blog post body-->
+											</div>
+											<!--/Single blog post-->
+										</div>
+										{% endif %}
+										{% endfor %}
+									</div>
+									{%  endfor %}
+								</div>
+								<!--Tiles blog-->
+
+							</div>
+							<!--/ Main news -->
+
+						</div>
+						<!--/ Magazine -->
+
+					</div>
+
+				</div>
+				<!-- First row -->
+				<div class='space-between-sm'></div>
+			</section>
+		</div>
+		<!-- End of first container-->
+		<!-- Education streak-->
+
+
+	</main>
+{% endblock %}

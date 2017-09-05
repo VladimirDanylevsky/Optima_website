@@ -1,0 +1,354 @@
+/* Your custom style */
+
+.cafe-lp .top-nav-collapse {
+    background-color: #003333;
+    color: #fff !important;
+}
+
+.navbar.navbar-light .breadcrumb a, .navbar.navbar-light .nav-item a {
+    color: #ccffff;
+    transition: .35s;
+}
+.navbar.navbar-dark .breadcrumb a, .navbar.navbar-dark .navbar-nav .nav-item a {
+    color: #339999;
+    transition: .35s;
+}
+.navbar.navbar-dark.top-nav-collapse .navbar-nav .nav-item a {
+    color: #ccffff;
+    transition: .35s;
+}
+
+.navbar-nav.mr-auto.smooth-scroll {
+    padding-top: 8px;
+}
+
+.logo-image {
+    height: auto;
+    width: auto;
+    max-width: 40px;
+    max-height: 40px;
+}
+
+body {
+    background-color: #ccffff;
+    margin: 0px;
+}
+html, body {
+    height: 100%;
+}
+
+.d-block.w-100 {
+    height: 100%;
+}
+
+.carousel-indicators {
+    bottom: 25%;
+    justify-content: flex-end;
+}
+
+.carousel-caption {
+    bottom: 32%;
+    text-align: right;
+}
+
+.covidien-text {
+    color: #ccffff;
+}
+
+.dropdown-divider {
+    height: 2px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.optima-text {
+    color: #003333
+}
+
+.card {
+    background-color: #339999;
+}
+
+.row {
+    display: -webkit-box !important;
+    display: -webkit-flex !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+}
+
+.row>[class*='col-'] {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+@media (min-width: 768px) {
+    .row.equal {
+        display: flex !important;
+        flex-wrap: wrap !important;
+    }
+}
+
+.card-text {
+    margin: 10px;
+}
+
+.text-muted {
+    padding: 10px;
+}
+
+.row.is-flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.row.is-flex>[class*='col-'] {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/*
+* And with max cross-browser enabled.
+* Nobody should ever write this by hand.
+* Use a preprocesser with autoprefixing.
+*/
+
+.row.is-flex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.row.is-flex>[class*='col-'] {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.cafe-lp .intro {
+    background-image: url("../img/wordcloud.jpg");
+}
+
+.cafe-lp .photo-3 {
+    background-image: url("../img/steak_4.jpg");
+}
+
+.cafe-lp .photo-2 {
+    background-image: url("../img/steak_3.jpg");
+}
+
+.cafe-lp .photo-1 {
+    background-image: url("../img/steak_2.jpg");
+}
+
+.cafe-lp .photo-0 {
+    background-image: url("../img/steak_1.jpg");
+}
+
+.optima-color {
+    background-color: #003333 !important;
+}
+.optima-light-color {
+    background-color: #339999 !important;
+}
+
+.btn-outline-default {
+    border: 2px solid #fff;
+    color: #ccffff !important;
+    background-color: transparent;
+}
+.space-between {
+    padding: 5%;
+}
+.space-between-sm {
+    padding: 2%;
+}
+.space-between-md {
+    padding: 5%;
+}
+.space-between-lg {
+    padding: 8%;
+}
+.space-between-xl {
+    padding: 10%;
+}
+.tiles-mag {
+    margin-left: 11px;
+    margin-right: 11px;
+}
+.tiles-blog {
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.tiles-blog .tiles-margins .tiles-blog-post {
+    position: relative;
+    overflow: hidden;
+}
+.tiles-blog .tiles-margins .tiles-blog-post .tiles-image::after {
+    display: block;
+    position: relative;
+    margin-top: -300px;
+    content: "";
+    height: 300px;
+    width: 100%;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7)) repeat-x;
+}
+.tiles-blog .tiles-margins {
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.tiles-blog .tiles-margins .tiles-blog-post .tiles-post-body {
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    position: absolute;
+    padding: 0px 30px 22px;
+}
+.tiles-blog .tiles-margins .tiles-blog-post .tiles-post-body .tiles-post-category {
+    display: inline;
+}
+.tiles-blog .tiles-margins .tiles-blog-post .tiles-post-body .tiles-post-category a {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: rgb(255, 255, 255);
+    padding: 1px 10px;
+    border-width: initial !important;
+    border-style: none !important;
+    border-color: initial !important;
+    border-image: initial !important;
+}
+.tiles-blog .tiles-margins .tiles-blog-post .tiles-post-body .tiles-post-comments {
+    margin: 10px 0px 0px 16px;
+}
+.tiles-blog .tiles-margins .tiles-blog-post .tiles-post-body .tiles-post-comments a {
+    color: rgb(158, 158, 158);
+    transition: 0.3s;
+}
+.left-drift-sm {
+    margin-left: 2%;
+}
+.right-drift-sm {
+    margin-right: 2%;
+}
+.zero-left-shift {
+    padding-left: 0;
+    margin-left: 0;
+    border-left: 0;
+}
+.no-padding {
+    padding: 0px;
+}
+.breadcrumb {
+    background-color: inherit;
+    color: inherit;
+}
+.breadcrumb a{
+    color: #339999;
+}
+footer.page-footer {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+/* ADD TO TEMPLATE GENERATOR, AND RENDER ON A SPECIFIC PAGE*/
+body.backstage{
+    background-image: url("https://www.maquet.com/globalassets/products/specialties/hero-cardiac-surgery.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.zero-left-shift a.nav-link{
+    padding-left: 8px;
+    margin-left: 0;
+    border-left: 0;
+}
+.breadcrumb.d-inline-flex{
+    margin-bottom: 0px;
+}
+.list-group {
+    background-color: #ccffff;
+}
+a.list-group-item{
+    background-color: #ccffff;
+    color: #339999;
+}
+.list-group-item:hover{
+    background-color: #339999;
+    color: #ccffff;
+}
+.list-group-item.active {
+    z-index: 2;
+    color: #ccffff;
+    background-color: #339999;
+    border-color: #339999;
+}
+.product-name {
+    margin-top: .6rem;
+}
+.carousel-thumbnails {
+    margin-bottom: 80px;
+}
+.accordion .card .card-header {
+    padding: 1rem 1.5rem;
+    background: 0 0;
+    border-bottom: 0;
+    background-color: #339999;
+}
+.accordion a{
+    color: #ccffff;
+}
+.card-body {
+    background-color: #339999;
+    color: #ccffff;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+.breadcrumb-item a:hover{
+    color: #fff
+}
+.fixed-stretch {
+width: 100%;
+max-width: 1920px;
+}
+ul.table-of-contents {
+    margin-top: 0;
+    padding-top: 48px;
+}
+.table-of-contents li {
+    padding: 2px 0;
+    box-sizing: inherit;
+}
+.table-of-contents a.active {
+    font-weight: 500;
+    padding-left: 10px;
+    border-left: 2px solid #339999;
+}
+.table-of-contents a{
+    font-weight: 500;
+    padding-left: 12px;
+    color: #339999;
+}
+.toc-wrapper {
+    position: relative;
+    margin-top: 42px;
+}
+.pinned {
+    position: fixed !important;
+}

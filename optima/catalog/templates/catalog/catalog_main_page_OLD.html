@@ -1,0 +1,273 @@
+{% load static %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en" class="full-height" data-livestyle-extension="available">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>{{ page.title }}</title>
+
+    <!-- Meta -->
+    <meta property="title" content="">
+    <meta property="description" content="">
+    <meta property="url" content="">
+    <meta property="site_name" content="">
+    <!-- Meta -->
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:title" content="">
+    <meta name="twitter:site" content="">
+    <meta name="twitter:image" content="">
+    <meta name="twitter:creator" content="">
+    <!-- Twitter Card -->
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'catalog/css/font-awesome.min.css' %}">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'catalog/css/bootstrap.css' %}" rel="stylesheet">
+
+    <!-- Material Design Bootstrap -->
+    <link href="{% static 'catalog/css/mdb.css' %}" rel="stylesheet">
+
+    <!-- Your custom styles (optional) -->
+    <link href="{% static 'catalog/css/style.css' %}" rel="stylesheet">
+    <!-- Favicons -->
+    <link rel="icon" href="{% static 'catalog/img/favicon.ico' %}" type="image/x-icon" />
+    <link rel="shortcut icon" href="{% static 'catalog/img/favicon.ico' %}" type="image/x-icon" />
+</head>
+
+<body class="cyan-skin intro-page cafe-lp">
+
+    <!--Navigation & Intro-->
+    <header>
+
+        <!--Navbar-->
+
+        <nav class="navbar fixed-top navbar-toggleable-md navbar-dark scrolling-navbar">
+
+            <div class="container">
+
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <a class="navbar-brand" href="/">
+                    <img class='logo-image' src="{% static 'catalog/img/logo_admin.png' %}">
+                </a>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+
+                    <!--Links-->
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light h6" href="/">Головна<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light h6" href="#">Про нас<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light h6" href="/catalog">Каталог<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect waves-light h6" href="#">Контакти<span class="sr-only">(current)</span></a>
+                        </li>
+                    </ul>
+
+                    <!--Social Icons-->
+
+
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <main>
+        <!-- First container -->
+        <div class="container">
+            <!--Section: about-->
+            <br id="catalog">
+            <section class="section">
+
+                <div class='space-between'></div>
+
+                <!-- First row -->
+                <div class="row">
+					{% for page_child in page.get_children %}
+                    <!-- First column -->
+                    <div class="col-lg-4 col-md-12 wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">
+
+                        <!-- Card -->
+                        <div class="card card-cascade narrower same-height hoverable">
+
+                            <!-- Card image -->
+                            <div class="view overlay hm-white-slight z-depth-1">
+								{% image page_child.specific.main_image fill-900x600-c20 format-jpeg as tmp_picture %} 
+                                <a href="{{ page_child.specific.url }}"><img src="{{ tmp_picture.url }}" class="img-fluid rounded-top" alt=""></a>
+                                <a>
+                                    <div class="waves-light waves-effect waves-light"></div>
+                                </a>
+                            </div>
+                            <!-- /.Card image -->
+
+                            <!-- Card content -->
+                            <div class="card-body text-center">
+
+                                <!-- Category & Title -->
+                                <a href="{{ page_child.specific.url }}" class="text-muted"><h5>{{ page_child.specific.sphere }}</h5></a>
+                                <h4 class="card-title"><strong><a href="{{ page_child.specific.url }}">{{ page_child.specific.short_title }}</a></strong></h4>
+
+                                <!-- Description -->
+                                <p class="card-text same-height-text">{{ page_child.specific.description|richtext }}
+                                </p>
+                                <a href="{{ page_child.specific.url }}"><button type="button" class="btn btn-outline-default waves-effect btn-lg">Перейти до каталогу {{ page_child.specific.short_title }}</button></a>
+
+                            </div>
+                            <!-- /.Card content -->
+
+                        </div>
+                        <!-- /.Card -->
+
+                    </div>
+					{% endfor %}
+                        <!-- /.Card -->
+
+                    </div>
+                    <!-- /.Third column -->
+
+                </div>
+                <!-- /.First row -->
+
+            </section>
+        </div>
+        <!-- End of first container-->
+        <!-- Education streak-->
+
+
+    </main>
+    <footer class="page-footer center-on-small-only  optima-color hm-black-strong">
+
+        <!--Footer Links-->
+
+
+        <div class="container">
+
+            <!--Second row-->
+            <div class="row mt-2 mb-1 text-center wow fadeIn" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeIn;">
+
+                <!--First column-->
+                <div class="col-md-4">
+
+                    <!--Title-->
+                    <h5 class="title">Ми працюємо</h5>
+
+                    <!--Opening hours table-->
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>Понеділок - П'ятниця:</td>
+                                <td>8:00 - 17:00</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+                <!--/First column-->
+
+                <hr class="w-100 clearfix d-md-none">
+
+                <!--Second column-->
+                <div class="col-md-4">
+
+                    <!--Title-->
+                    <h5 class="title">Наша адреса</h5>
+
+                    <!--Address-->
+                    <p>вул. Ежена Потьє 12<br> Київ, 03611 <br>
+
+
+                </div>
+                <!--/Second column-->
+
+                <hr class="w-100 clearfix d-md-none">
+
+                <!--Third column-->
+                <div class="col-md-4">
+
+                    <!--Title-->
+                    <h5 class="title">Наші контаки</h5>
+                    <p>Тел. (044) 364-70-71
+                    </p>
+                    <!--Social buttons-->
+
+                    <!--/Social buttons-->
+
+                </div>
+                <!--/Third column-->
+
+            </div>
+            <div class="row mt-2 mb-1 text-center wow fadeIn" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeIn;">
+                <div class="col-md-8">
+                    <div class="card">
+
+                        <div class="view overlay hm-white-slight">
+                            <div id="map">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--/Second row-->
+
+        </div>
+    </footer>
+    <!--/Main content-->
+
+
+    <!-- SCRIPTS -->
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="{% static 'catalog/js/jquery-3.2.1.min.js' %}"></script>
+
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="{% static 'catalog/js/tether.min.js' %}"></script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{% static 'catalog/js/bootstrap.min.js' %}"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{% static 'catalog/js/mdb.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'catalog/js/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'catalog/js/jquery.matchHeight.js' %}"></script>
+    <script>
+        //Animation init
+        new WOW().init();
+
+        // Material Select Initialization
+        $(function() {
+            $('.same-height').matchHeight();
+        });
+        $(function() {
+            $('.same-height-text').matchHeight();
+        });
+    </script>
+
+
+
+
+
+</body>
+
+</html>
+{% endblock %}

@@ -1,0 +1,263 @@
+{% load static %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en" class="full-height" data-livestyle-extension="available">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+	<title>{{ page.title }}</title>
+
+	<!-- Meta -->
+	<meta property="title" content="">
+	<meta property="description" content="">
+	<meta property="url" content="">
+	<meta property="site_name" content="">
+	<!-- Meta -->
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:title" content="">
+	<meta name="twitter:site" content="">
+	<meta name="twitter:image" content="">
+	<meta name="twitter:creator" content="">
+	<!-- Twitter Card -->
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="{% static 'catalog/css/font-awesome.min.css' %}">
+
+	<!-- Bootstrap core CSS -->
+	<link href="{% static 'catalog/css/bootstrap.css' %}" rel="stylesheet">
+
+	<!-- Material Design Bootstrap -->
+	<link href="{% static 'catalog/css/mdb.css' %}" rel="stylesheet">
+
+	<!-- Your custom styles (optional) -->
+	<link href="{% static 'catalog/css/style.css' %}" rel="stylesheet">
+	<!-- Favicons -->
+	<link rel="icon" href="{% static 'catalog/img/favicon.ico' %}" type="image/x-icon" />
+	<link rel="shortcut icon" href="{% static 'catalog/img/favicon.ico' %}" type="image/x-icon" />
+</head>
+<body class="cyan-skin intro-page cafe-lp">
+
+	<!--Navigation & Intro-->
+	<header>
+
+		<!--Navbar-->
+
+		<nav class="navbar fixed-top navbar-toggleable-md navbar-dark scrolling-navbar">
+
+			<div class="container">
+
+				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<a class="navbar-brand" href="/">
+					<img class='logo-image' src="{% static 'catalog/img/logo_admin.png' %}">
+				</a>
+
+				<div class="collapse navbar-collapse" id="navbarNav">
+
+					<!--Links-->
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item">
+							<a class="nav-link waves-effect waves-light h6" href="{{ page.url }}">Головна<span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link waves-effect waves-light h6" href="{{ page.url }}">Про нас<span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link waves-effect waves-light h6" href="{{ page.url }}">Каталог<span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link waves-effect waves-light h6" href="{{ page.url }}">Контакти<span class="sr-only">(current)</span></a>
+						</li>
+					</ul>
+
+					<!--Social Icons-->
+
+
+				</div>
+			</div>
+		</nav>
+
+	</header>
+	<main>
+
+		<!-- First container -->
+		<div class="container">
+			<!--Section: about-->
+			<section class="section">
+
+				<div class='space-between'></div>
+
+				<ol class="breadcrumb d-inline-flex p-2 h6 wow fadeIn" data-wow-delay="0.7s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">
+					{% for ancestors in page.get_ancestors %}
+					{% if ancestors.specific.title != 'Root' %}
+					<li class="breadcrumb-item"><a href="{{ ancestors.specific.url }}">{{ ancestors.specific.title }}</a></li>
+					{% endif %}
+					{% endfor %}
+					<li class="breadcrumb-item"><a href="{{ page.url }}">{{ page.title }}</a></li>
+				</ol>
+				<div class="dropdown-divider optima-light-color wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;"></div>
+				<section id="productDetails">
+					<div class="row">
+						<div class="col-lg-5">
+							<!--Carousel Wrapper-->
+							<div id="carousel" class="carousel slide wow fadeIn" data-ride="carousel" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeIn;">
+								<div class="carousel-inner">
+									{% for picture in page.gallery_images.all %}
+										{% image picture.image fill-675x900-c20 format-jpeg as tmp_picture %} 
+										{% if forloop.first %}
+											<div class="carousel-item active">
+										{% else %}
+											<div class="carousel-item">
+										{% endif %}
+										
+											<img class="d-block w-100" src="{{ tmp_picture.url }}" alt="">
+										</div>
+									{% endfor %}
+								</div>
+								<a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+									<span class="sr-only">Previous</span>
+								</a>
+								<a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+									<span class="carousel-control-next-icon" aria-hidden="true"></span>
+									<span class="sr-only">Next</span>
+								</a>
+							</div>
+							<!--/.Carousel Wrapper-->
+						</div>
+						<div class="col-lg-7">
+							<h2 class="h2-responsive center-on-small-only product-name wow fadeIn" data-wow-delay="0.25s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;"><strong>{{ page.title }}</strong></h2>
+							<div class="dropdown-divider optima-light-color wow fadeIn" data-wow-delay="0.35s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;"></div>
+							<!--Accordion wrapper-->
+							<div class="wow fadeIn" data-wow-delay="0.35s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">
+							{{ page.description|richtext }}
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- First row -->
+				<div class='space-between-xl'></div>
+			</section>
+		</div>
+		<!-- End of first container-->
+		<!-- Education streak-->
+
+
+	</main>
+	<footer class="page-footer center-on-small-only	 optima-color hm-black-strong">
+
+		<!--Footer Links-->
+
+
+		<div class="container">
+
+			<!--Second row-->
+			<div class="row mt-2 mb-1 text-center wow fadeIn" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeIn;">
+
+				<!--First column-->
+				<div class="col-md-4">
+
+					<!--Title-->
+					<h5 class="title">Ми працюємо</h5>
+
+					<!--Opening hours table-->
+					<table class="table">
+						<tbody>
+							<tr>
+								<td>Понеділок - П'ятниця:</td>
+								<td>8:00 - 17:00</td>
+							</tr>
+
+						</tbody>
+					</table>
+
+				</div>
+				<!--/First column-->
+
+				<hr class="w-100 clearfix d-md-none">
+
+				<!--Second column-->
+				<div class="col-md-4">
+
+					<!--Title-->
+					<h5 class="title">Наша адреса</h5>
+
+					<!--Address-->
+					<p>вул. Ежена Потьє 12<br> Київ, 03611 <br>
+
+
+				</div>
+				<!--/Second column-->
+
+				<hr class="w-100 clearfix d-md-none">
+
+				<!--Third column-->
+				<div class="col-md-4">
+
+					<!--Title-->
+					<h5 class="title">Наші контаки</h5>
+					<p>Тел. (044) 364-70-71
+					</p>
+					<!--Social buttons-->
+
+					<!--/Social buttons-->
+
+				</div>
+				<!--/Third column-->
+
+			</div>
+			<!--/Second row-->
+
+		</div>
+	</footer>
+	<!--/Main content-->
+
+
+	<!-- SCRIPTS -->
+
+	<!-- JQuery -->
+	<script type="text/javascript" src="{% static 'catalog/js/jquery-3.2.1.min.js' %}"></script>
+
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="{% static 'catalog/js/tether.min.js' %}"></script>
+
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript" src="{% static 'catalog/js/bootstrap.min.js' %}"></script>
+
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="{% static 'catalog/js/mdb.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'catalog/js/popper.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'catalog/js/jquery.matchHeight.js' %}"></script>
+	<script>
+		//Animation init
+		new WOW().init();
+
+		// Material Select Initialization
+		$(function() {
+			$('.same-height').matchHeight();
+		});
+		$(function() {
+			$('.same-height-text').matchHeight();
+		});
+		$('.carousel').carousel()
+	</script>
+
+
+
+
+
+</body>
+
+</html>
+{% endblock %}
