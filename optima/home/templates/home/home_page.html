@@ -1,6 +1,6 @@
 {% load static %}
 {% load wagtailcore_tags wagtailimages_tags %}
-{% block content %}
+{% block maincontainer %}
 <!DOCTYPE html>
 <html lang="en" class="full-height" data-livestyle-extension="available">
 
@@ -162,7 +162,7 @@
 
                 <!-- First row -->
                 <div class="row">
-
+					{% for page_child in page.get_children.first.get_children %}
                     <!-- First column -->
                     <div class="col-lg-4 col-md-12 wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">
 
@@ -171,8 +171,9 @@
 
                             <!-- Card image -->
                             <div class="view overlay hm-white-slight z-depth-1">
-                                <a href="catalog/catalog-covidien"><img src="{% static 'home/img/card_pic_covidien.jpg' %}" class="img-fluid rounded-top" alt=""></a>
-                                <a href="catalog/catalog-covidien">
+							    {% image page_child.specific.main_image fill-900x600-c20 format-jpeg as tmp_picture %} 
+                                <a href="{{ page_child.specific.url }}"><img src="{{ tmp_picture.url }}" class="img-fluid rounded-top" alt=""></a>
+                                <a href="{{ page_child.specific.url }}">
                                     <div class="waves-light waves-effect waves-light"></div>
                                 </a>
                             </div>
@@ -182,16 +183,13 @@
                             <div class="card-body text-center">
 
                                 <!-- Category & Title -->
-                                <a href="catalog/catalog-covidien" class="text-muted"><h5>Хірургія</h5></a>
-                                <h4 class="card-title"><strong><a href="catalog/catalog-covidien">Covidien</a></strong></h4>
+                                <a href="{{ page_child.specific.url }}" class="text-muted"><h5>{{ page_child.specific.sphere }}</h5></a>
+                                <h4 class="card-title"><strong><a href="catalog/catalog-covidien">{{ page_child.specific.short_title }}</a></strong></h4>
 
                                 <!-- Description -->
-                                <p class="card-text same-height-text">O amet quae quis iudicem, nostrud elit cillum incurreret legam, dolor quibusdam mentitum, et hic consectetur se a quo amet laborum qui fugiat mentitum ita officia id qui ab quid laboris, admodum aliqua incididunt. Duis
-                                    admodum et coniunctione ne sed export voluptatibus, est ita aute admodum in an et efflorescere, labore praetermissum aliquip quis commodo in senserit ea constias, aliqua aliquip transferrem, qui fore arbitrantur. Export
-                                    ad hic quae arbitror quo quis e aliquip.Si dolore expetendis consequat, iis non quis eram duis. Singulis ex aute mandaremus. Occaecat est dolor litteris, summis nam ab velit possumus ex an eu illum aute dolor, o et
-                                    illustriora. Quid in proident de litteris qui duis.
+                                <p class="card-text same-height-text">{{ page_child.specific.description|richtext }}
                                 </p>
-                                <a href="catalog/catalog-covidien"><button type="button" class="btn btn-outline-default waves-effect btn-lg">Перейти до каталогу Covidien</button></a>
+                                <a href="{{ page_child.specific.url }}"><button type="button" class="btn btn-outline-default waves-effect btn-lg">Перейти до каталогу {{ page_child.specific.short_title }}</button></a>
 
                             </div>
                             <!-- /.Card content -->
@@ -200,87 +198,7 @@
                         <!-- /.Card -->
 
                     </div>
-                    <!-- /.First column -->
-
-                    <!-- Second column -->
-                    <div class="col-lg-4 col-md-12 wow fadeIn" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">
-
-                        <!-- Card -->
-                        <div class="card card-cascade narrower same-height hoverable">
-
-                            <!-- Card image -->
-                            <div class="view overlay hm-white-slight z-depth-1">
-                                <a href="catalog/catalog-terumo"><img src="{% static 'home/img/card_pic_terumo.jpg' %}" class="img-fluid rounded-top" alt=""></a>
-								<a href="catalog/catalog-terumo">
-                                    <div class="mask waves-light waves-effect waves-light"></div>
-                                </a>
-                            </div>
-                            <!-- /.Card image -->
-
-                            <!-- Card content -->
-                            <div class="card-body text-center ">
-
-                                <!-- Category & Title -->
-                                <a href="catalog/catalog-terumo" class="text-muted"><h5>Донація крові</h5></a>
-                                <h4 class="card-title"><strong><a href="catalog/catalog-terumo">Terumo BCT</a></strong></h4>
-
-                                <!-- Description -->
-                                <p class="card-text same-height-text">Quae quo ex aute senserit. An fugiat laboris tractavissent, iis ita sempiternum, sed arbitror exquisitaque, ubi consequat domesticarum, eram graviterque commodo dolor quamquam sed ingeniis reprehenderit a doctrina, occaecat
-                                    nulla cillum incurreret tamen, laboris ipsum qui nescius praetermissum. Irure exquisitaque cupidatat nisi consequat ita si sunt appellat fidelissimae. Iudicem quem multos expetendis legam, quid pariatur de possumus.Pariatur
-                                    aute ab aliquip distinguantur. Offendit aute pariatur iudicem te irure nam litteris se esse. Ad appellat hic ingeniis a ingeniis quo export in ubi mandaremus o excepteur, in pariatur ubi nostrud.
-                                </p>
-                                <div class="d-flex align-self-center">
-                                <a href="catalog/catalog-terumo"><button type="button" class="btn btn-outline-default waves-effect btn-lg">Перейти до каталогу Terumo</button></a>
-                                </div>
-                            </div>
-                            <!-- /.Card content -->
-
-                        </div>
-                        <!-- /.Card -->
-
-                    </div>
-                    <!-- /.Second column -->
-
-                    <!-- Third column -->
-                    <div class="col-lg-4 col-md-12 wow fadeIn" data-wow-delay="0.6s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">
-
-                        <!-- Card -->
-                        <div class="card card-cascade narrower same-height hoverable">
-
-                            <!-- Card image -->
-                            <div class="view overlay hm-white-slight z-depth-1">
-                                <a href="catalog/catalog-smith-nephew"><img src="{% static 'home/img/card_pic_sn.jpg' %}" class="img-fluid rounded-top" alt=""></a>
-                                <a href="catalog/catalog-smith-nephew">
-                                    <div class="mask waves-light waves-effect waves-light"></div>
-                                </a>
-                            </div>
-                            <!-- /.Card image -->
-
-                            <!-- Card content -->
-                            <div class="card-body text-center">
-
-                                <!-- Category & Title -->
-                                <a href="catalog/catalog-smith-nephew" class="text-muted"><h5>Коблація</h5></a>
-                                <h4 class="card-title"><strong><a href="catalog/catalog-smith-nephew">Smith & Nephew</a></strong></h4>
-
-                                <!-- Description -->
-                                <p class="card-text same-height-text">Mandaremus aliqua consequat, mentitum veniam quae quo veniam. Do multos nisi culpa arbitror, quid voluptate ut consectetur, malis praesentibus cernantur cillum possumus ne ab multos constias voluptatibus, cernantur irure
-                                    cernantur eu ne anim eram nisi offendit, export mentitum nam relinqueret, summis excepteur ea incididunt. Te esse reprehenderit. Ex nulla dolor magna senserit ita fugiat ea senserit te quid sed fabulas ita aliquip,
-                                    culpa qui te summis appellat an est dolore elit irure admodum ubi eu nam irure officia eu quo nostrud quo doctrina an aliqua consequat commodo.Est fugiat arbitror si duis id expetendis de cillum, aliquip quem quorum
-                                    et eram, litteris enim in expetendis arbitrantur.
-                                </p>
-                                <a href="catalog/catalog-smith-nephew"><button type="button" class="btn btn-outline-default waves-effect btn-lg">Перейти до каталогу Smith & Nephew</button></a>
-                                <!-- Card footer -->
-
-                            </div>
-                            <!-- /.Card content -->
-
-                        </div>
-                        <!-- /.Card -->
-
-                    </div>
-                    <!-- /.Third column -->
-
+					{% endfor %}
                 </div>
                 <!-- /.First row -->
 
